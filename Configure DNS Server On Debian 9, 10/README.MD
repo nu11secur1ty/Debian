@@ -277,6 +277,44 @@ ns1.yourzone.local.      604800  IN      A       192.168.0.10
 ;; MSG SIZE  rcvd: 124
 ```
 
-***The DNS server’s answer for the forward lookup www.itzgeek.local is 192.168.0.100.***
+***The DNS server’s answer for the forward lookup www.yourzone.local is 192.168.0.100.***
 
 Confirm the reverse lookup with dig command.
+
+```bash
+dig -x 192.168.0.100
+```
+
+# Output:
+
+```bash
+; <<>> DiG 9.11.3-1ubuntu1.11-Ubuntu <<>> -x 192.168.0.100
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 33889
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+; COOKIE: 9806a5ee8f6645c178aa65b25e102530e49ae9a15456fbe1 (good)
+;; QUESTION SECTION:
+;100.0.168.192.in-addr.arpa.    IN      PTR
+
+;; ANSWER SECTION:
+100.0.168.192.in-addr.arpa. 604800 IN   PTR     www.yourzone.local.
+
+;; AUTHORITY SECTION:
+0.168.192.in-addr.arpa. 604800  IN      NS      ns1.yourzone.local.
+
+;; ADDITIONAL SECTION:
+ns1.yourzone.local.      604800  IN      A       192.168.0.10
+
+;; Query time: 0 msec
+;; SERVER: 192.168.0.10#53(192.168.0.10)
+;; WHEN: Sat Jan 04 05:40:00 UTC 2020
+;; MSG SIZE  rcvd: 148
+```
+
+***The DNS server’s answer for the reverse lookup 192.168.0.100 is www.yourzone.local.***
+
+This result confirms that both forward and reverse zone lookups are working fine.
