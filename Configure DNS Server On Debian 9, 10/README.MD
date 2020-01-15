@@ -117,3 +117,82 @@ mail    IN       A      192.168.0.150
 
 ftp     IN      CNAME   www.yourzone.local.
 ```
+
+# Reverse Zone
+
+Copy the sample entries to zone file called `reverse.yourzone.local.db` for the reverse zone under `/etc/bind` directory and create reverse pointers for the above forward zone records.
+
+PTR – Pointer
+SOA – Start of Authority
+
+```bash
+cp /etc/bind/db.127 /etc/bind/reverse.yourzone.local.db
+```
+
+Edit the reverse zone file.
+
+```bash
+vim /etc/bind/reverse.yourzone.local.db
+```
+Update the content as shown below.
+
+```xml
+Whenever you change any records in the lookup file, make sure you update the serial number to some random number, higher than current.
+```
+
+```bash
+;
+; BIND reverse data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     itzgeek.local. root.yourzone.local. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+; Commentout below two lines
+
+;@      IN      NS      localhost.
+;1.0.0  IN      PTR     localhost.
+
+;Name Server Information
+
+@       IN      NS     ns1.yourzone.local.
+
+;Reverse lookup for Name Server
+
+10      IN      PTR    ns1.yourzone.local.
+
+;PTR Record IP address to HostName
+
+100     IN      PTR    www.yourzone.local.
+150     IN      PTR    mail.yourzone.local.
+```
+
+# Check BIND Configuration Syntax
+
+Use `named-checkconf` command to check the syntax of `named.conf*` files for any errors.
+
+
+```bash
+named-checkconf
+```
+
+Command will return to the shell if there are no errors.
+Also, you can use named-checkzone to check the syntax errors in zone files.
+
+# Forward Zone
+
+```bash
+named-checkzone yourzone.local /etc/bind/forward.yourzone.local.db
+```
+
+# Output:
+
+```bash
+zone yourzone.local/IN: loaded serial 2
+OK
+```
+
