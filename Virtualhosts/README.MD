@@ -153,11 +153,17 @@ CustomLog ${APACHE_LOG_DIR}/domain1.com_access.log combined
 
 The next step would be to enable the virtual hosts we have just created. You can do this with the following commands:
 
+# Disable default
+```bash
+a2dissite 000-default.conf
+```
+- Enable your new vhost domains
 
 ```bash
 a2ensite domain1.com.conf
 a2ensite domain2.com.conf
 ```
+
 
 Another alternative way to do this is by creating a symbolic link for each virtual host in /etc/apache2/sites-enabled
 
