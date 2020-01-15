@@ -117,7 +117,7 @@ CustomLog ${APACHE_LOG_DIR}/domain2.com_access.log combined
 
 </VirtualHost>
 ```
-# Explenation
+# Explanation
 -------------------------------------------------------------------------
 Here is a short explanation about each line in our virtual host files.
 
