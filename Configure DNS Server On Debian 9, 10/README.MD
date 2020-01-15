@@ -29,3 +29,91 @@ zone "yourzone.local" IN { //Domain name
 
 };
 ```
+
+# Reverse Zone
+
+The following is for the reverse zone in the named.conf.local file.
+
+```bash
+zone "0.168.192.in-addr.arpa" IN { //Reverse lookup name, should match your network in reverse order
+
+     type master; // Primary DNS
+
+     file "/etc/bind/reverse.yourzone.local.db"; //Reverse lookup file
+
+     allow-update { none; }; //Since this is the primary DNS, it should be none.
+
+};
+```
+
+# Create Zone lookup file
+
+Once zones are created, you can go ahead and create zone data files for the forward zone and reverse zone.
+
+- Forward Zone
+
+Copy the sample entries to zone file called forward.yourzone.local.db for the forward zone under /etc/bind directory.
+
+Record types in the zone file,
+
+SOA – Start of Authority
+NS – Name Server
+A – A record
+MX – Mail for Exchange
+CN – Canonical Name
+
+Domain names should end with a dot (.).
+
+```bash
+cp /etc/bind/db.local /etc/bind/forward.yourzone.local.db
+```
+
+- Edit the zone.
+
+```bash
+vim /etc/bind/forward.yourzone.local.db
+```
+Update the content as shown below.
+
+```xml
+Whenever you change any records in the lookup file, make sure you update the serial number to some random number, higher than current.
+```
+
+```bash
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     ns1.yourzone.local. root.yourzone.local. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+; Commentout below three lines
+;@      IN      NS      localhost.
+;@      IN      A       127.0.0.1
+;@      IN      AAAA    ::1
+
+;Name Server Information
+
+@       IN      NS      ns1.yourzone.local.
+
+;IP address of Name Server
+
+ns1     IN      A       192.168.0.10
+
+;Mail Exchanger
+
+yourzone.local.   IN     MX   10   mail.yourzone.local.
+
+;A – Record HostName To Ip Address
+
+www     IN       A      192.168.0.100
+mail    IN       A      192.168.0.150
+
+;CNAME record
+
+ftp     IN      CNAME   www.yourzone.local.
+```
