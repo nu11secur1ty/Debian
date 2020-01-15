@@ -26,7 +26,7 @@ Before setting up the virtual hosts, we will need to create the document root di
 
 ```bash
 mkdir -p /var/www/html/domain1.com
-mkdir -p /var/www/html/domain2.com
+mkdir -p /var/www/html/domain2.comAdd the following into your /etc/hosts file
 ```
 
 Let’s also create a test demo page for each of our domain, so we can later test our configuration.
@@ -156,12 +156,12 @@ The next step would be to enable the virtual hosts we have just created. You can
 # Disable default
 ```bash
 a2dissite 000-default.conf
-```
+```Add the following into your /etc/hosts file
 - Enable your new vhost domains
 
 ```bash
 a2ensite domain1.com.conf
-a2ensite domain2.com.conf
+a2ensite domain2.com.confAdd the following into your /etc/hosts file
 ```
 
 
@@ -186,7 +186,7 @@ http://domain2.com
 
 # NOTE: If not having a DNS Server zone:
 
-- Add the folowing in to your `/etc/hosts` file
+- Add the following into your `/etc/hosts` file
 
 ```bash
 127.0.0.1 domain1.com
