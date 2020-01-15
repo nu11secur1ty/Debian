@@ -83,7 +83,7 @@ Whenever you change any records in the lookup file, make sure you update the ser
 ;
 ; BIND data file for local loopback interface
 ;
-$TTL    604800zone itzgeek.local/IN: loaded serial 2
+$TTL    604800zone yourzone.local/IN: loaded serial 2
 OK
 @       IN      SOA     ns1.yourzone.local. root.yourzone.local. (
                               2         ; Serial
@@ -146,7 +146,7 @@ Whenever you change any records in the lookup file, make sure you update the ser
 ; BIND reverse data file for local loopback interface
 ;
 $TTL    604800
-@       IN      SOA     itzgeek.local. root.yourzone.local. (
+@       IN      SOA     yourzone.local. root.yourzone.local. (
                               2         ; Serial
                          604800         ; Refresh
                           86400         ; Retry
@@ -224,5 +224,59 @@ systemctl status bind9
 
 # Verify DNS
 
+Go to any client machine and add our new DNS server IP Address in `/etc/resolv.conf` file.
 
+```bash
+vim /etc/resolv.conf
+```
 
+- Make an entry like below.
+
+```bash 
+nameserver 192.168.0.10
+```
+
+You can either use `nslookup` or `dig` command to verify the DNS server.
+Use the dig command to verify the forward lookup.
+
+```bash
+dig www.yourzone.local
+```
+If you get command not found, install `bind-utils` on Red Hat derivatives or `dnsutils` on the Debian derivatives package.
+
+# Output:
+
+```bash
+; <<>> DiG 9.11.5-P4-5.1-Debian <<>> www.yourzone.local
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved for Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 41979
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+; COOKIE: c51856f159ddf40dadc13b835e1024a996e2a306d7888afe (good)
+;; QUESTION SECTION:
+;www.yourzone.local.             IN      A
+
+;; ANSWER SECTION:
+www.yourzone.local.      604800  IN      A       192.168.0.100
+
+;; AUTHORITY SECTION:
+yourzone.local.          604800  IN      NS      ns1.yourzone.local.
+
+;; ADDITIONAL SECTION:
+ns1.yourzone.local.      604800  IN      A       192.168.0.10
+
+;; Query time: 1 msec
+;; SERVER: 192.168.0.10#53(192.168.0.10)
+;; WHEN: Sat Jan 04 05:37:45 UTC 2020
+;; MSG SIZE  rcvd: 124
+```
+
+***The DNS server’s answer for the forward lookup www.itzgeek.local is 192.168.0.100.***
+
+Confirm the reverse lookup with dig command.
