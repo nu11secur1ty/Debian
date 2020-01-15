@@ -83,7 +83,8 @@ Whenever you change any records in the lookup file, make sure you update the ser
 ;
 ; BIND data file for local loopback interface
 ;
-$TTL    604800
+$TTL    604800zone itzgeek.local/IN: loaded serial 2
+OK
 @       IN      SOA     ns1.yourzone.local. root.yourzone.local. (
                               2         ; Serial
                          604800         ; Refresh
@@ -195,4 +196,33 @@ named-checkzone yourzone.local /etc/bind/forward.yourzone.local.db
 zone yourzone.local/IN: loaded serial 2
 OK
 ```
+
+# Reverse Zone
+
+```bash
+named-checkzone 0.168.192.in-addr.arpa /etc/bind/reverse.yourzone.local.db
+```
+
+# Output:
+
+```bash
+zone 0.168.192.in-addr.arpa/IN: loaded serial 2
+OK
+```
+
+# Restart bind service.
+
+```bash
+systemctl restart bind9
+```
+
+# Check the status of the bind9 service.
+
+```bash
+systemctl status bind9
+```
+
+# Verify DNS
+
+
 
