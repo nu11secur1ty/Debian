@@ -51,6 +51,9 @@ If all of the clients that will use the proxy have a static IP address the simpl
 
 Instead of adding the IP addresses in the main configuration file we will create a new include file that will store the IP addresses:
 
+```bash
+vim /etc/squid/allowed_ips.txt
+```
 
 
 
