@@ -108,23 +108,4 @@ yahoo
 gmail
 facebook
 ```
-# Good luck =)cat /etc/squid/blockkeywords.lst
-
-yahoo
-gmail
-facebook
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Good luck =)
