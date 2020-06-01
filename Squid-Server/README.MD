@@ -59,7 +59,8 @@ Instead of adding the IP addresses in the main configuration file we will create
 - - - Restart service
 
 ```bash
-sudo service squid restart
+systemctl enable squid
+systemctl restrt squid
 ````
 - - - For Debian 8
 ```bash
