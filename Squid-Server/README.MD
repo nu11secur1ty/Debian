@@ -11,9 +11,9 @@ sudo apt install squid
 ```bash
 sudo systemctl status squid
 ```
-- - - For Debian 8
+- - - For Ubuntu 16.04
 ```bash
-apt install squid3 -y
+apt install squid -y
 ```
 - out
 ```bash
@@ -62,17 +62,17 @@ Instead of adding the IP addresses in the main configuration file we will create
 systemctl enable squid
 systemctl restrt squid
 ````
-- - - For Debian 8
+- - - For Ubuntu 16.04
 ```bash
-systemctl enable squid3
-systemctl status squid3
+systemctl enable squid
+systemctl status squid
 ```
 
 # Allow All Traffic
 
 ```bash
  http_access allow all
- #http_access deny allinstall squid3
+ #http_access deny all
 ```
 # Block Specific Website with Squid
 
