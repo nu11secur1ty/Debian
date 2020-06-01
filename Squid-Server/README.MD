@@ -11,6 +11,10 @@ sudo apt install squid
 ```bash
 sudo systemctl status squid
 ```
+- - - For Debian 8
+```bash
+apt install squid3 -y
+```
 - out
 ```bash
 ● squid.service - LSB: Squid HTTP Proxy version 3.x
@@ -61,7 +65,7 @@ sudo service squid restart
 
 ```bash
  http_access allow all
- #http_access deny all
+ #http_access deny allinstall squid3
 ```
 # Block Specific Website with Squid
 
