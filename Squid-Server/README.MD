@@ -61,6 +61,12 @@ Instead of adding the IP addresses in the main configuration file we will create
 ```bash
 sudo service squid restart
 ````
+- - - For Debian 8
+```bash
+systemctl enable squid3
+systemctl status squid3
+```
+
 # Allow All Traffic
 
 ```bash
