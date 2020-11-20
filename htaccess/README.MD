@@ -46,4 +46,4 @@ If you are getting server errors, make sure the Apache user has permission to re
 chmod 755 /var/www/secret/.htaccess
 chmod 755 /etc/apache2/.htpasswd
 ```
-
+# BR
