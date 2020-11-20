@@ -8,3 +8,33 @@ First we’ll need to create a file containing users and passwords:
 htpasswd -c /etc/apache2/.htpasswd user1
 htpasswd /etc/apache2/.htpasswd user2
 ```
+You can store the password file anywhere you like but I chose to store it where the Apache configuration files are located.
+
+Now create a .htaccess file in the folder you wish to protect (pico /var/www/secret/.htaccess)
+
+```bash
+AuthType Basic
+AuthUserFile /etc/apache2/.htpasswd
+AuthName "Enter password"
+Require valid-user
+```
+
+Make sure Apache allows .htaccess to override settings. Add these lines into your virtual host configuration and change the directory to your document root (pico /etc/apache2/sites-enabled/000-default):
+
+```bash
+<Directory /var/www/>
+ AllowOverride All
+</Directory>
+```
+
+The AllowOverride setting may already be in your virtual host configuration. Make sure it is set to All.
+
+If you changed the AllowOverride setting, restart Apache:
+
+```bash
+/etc/init.d/apache2 restart
+# of 
+systemctl restart apache2.service
+``` 
+
+
