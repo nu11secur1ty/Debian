@@ -36,5 +36,12 @@ If you changed the AllowOverride setting, restart Apache:
 # of 
 systemctl restart apache2.service
 ``` 
+The directory should now be password protected.
 
+If you are getting server errors, make sure the Apache user has permission to read both the .htaccess file and .htpasswd.
+
+```bash
+chmod 755 /var/www/secret/.htaccess
+chmod 755 /etc/apache2/.htpasswd
+```
 
