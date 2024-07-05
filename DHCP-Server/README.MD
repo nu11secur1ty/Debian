@@ -1,4 +1,4 @@
-A DHCP server is required to allocate IP addresses to devices connected to the server directly or through a router. This service is usually used on local networks. In this guide, we will configure a DHCP server on which there are 2 external ports, 1 for connecting to the Internet and the other for the local network.
+## Debian 12 DHCP server - home router and more.
 
 ## 1. Install packages
 ```
@@ -19,15 +19,21 @@ INTERFACESv4="enp1s0"
 ```
 ## 1.2 Configuring 
 - the enp1s0 interface itself if it is not configured
-
-/etc/network/interfaces
+```
+vim /etc/network/interfaces
+```
+- edit with yours:
+```
 auto enp1s0
      iface enp1s0 inet static
      address 100.100.100.1
      netmask 255.255.255.0
+```
 ## 1.2.1 Restart the service
 
+```
 service networking restart
+```
 
 ## 1.3 Basic settings for dhcp service
 ```
