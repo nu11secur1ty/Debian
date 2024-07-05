@@ -82,6 +82,9 @@ apt install rsyslog
 
 ```
 vim /etc/rsyslog.conf
+```
+- the setup
+```
 local7.* /var/log/dhcpd.log
 ```
 ## Let's restart the service
