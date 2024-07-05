@@ -9,14 +9,16 @@ In file:
 ```
 vim /etc/default/isc-dhcp-server
 ```
-## Let's uncomment the timing and bring the file to the form where in the INTERFACESv4 field we indicate the port for the local network, in our case enp1s0.
+## Let's uncomment:
+- the timing and bring the file to the form where in the INTERFACESv4 field we indicate the port for the local network, in our case enp1s0.
 
 ```
 DHCPDv4_CONF=/etc/dhcp/dhcpd.conf
 DHCPDv4_PID=/var/run/dhcpd.pid
 INTERFACESv4="enp1s0"
 ```
-## 1.2 Configuring the enp1s0 interface itself if it is not configured
+## 1.2 Configuring 
+- the enp1s0 interface itself if it is not configured
 
 /etc/network/interfaces
 auto enp1s0
@@ -87,7 +89,8 @@ apt update -y && apt install iptables-persistent
 iptables -t nat -A POSTROUTING -j MASQUERADE
 ```
 
-## This command will save the iptables rules to /etc/iptables/rules.v4, where later it will be restored by iptables-persistent on every reboot.
+## iptables routing: 
+This command will save the iptables rules to /etc/iptables/rules.v4, where later it will be restored by iptables-persistent on every reboot.
 ```
 iptables-save > /etc/iptables/rules.v4
 ```
