@@ -38,6 +38,9 @@ service networking restart
 ## 1.3 Basic settings for dhcp service
 ```
 vim /etc/dhcp/dhcpd.conf
+```
+- setup with yours
+```
 option domain-name "localhost.localdomain";
 option domain-name-servers 100.100.100.1, 8.8.8.8;
 default-lease-time 32400;
@@ -51,6 +54,7 @@ subnet 100.100.100.0 netmask 255.255.255.0 {
    option routers 100.100.100.1;
 }
 ```
+
 ## 1.3.1 Setting up a static IP by MAC address
 ```
 vim /etc/dhcp/dhcpd.conf
