@@ -58,6 +58,9 @@ subnet 100.100.100.0 netmask 255.255.255.0 {
 ## 1.3.1 Setting up a static IP by MAC address
 ```
 vim /etc/dhcp/dhcpd.conf
+```
+- Client MAC
+```
 host mini-pc {
      hardware ethernet 06:e0:4c:6a:04:14;
      fixed-address 100.100.100.101;
