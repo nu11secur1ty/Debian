@@ -1,5 +1,7 @@
 # Debian 13
 
+***You can do this right now, dear all! 😎***
+
 **This is a placeholder for instructions when Debian 13 is released in August 2025**
 
 To start, read the [official release notes](https://www.debian.org/releases/trixie/release-notes/upgrading.en.html).
