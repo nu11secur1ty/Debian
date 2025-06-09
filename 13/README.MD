@@ -1,6 +1,6 @@
 # Debian 13
 
-***You can do this right now, dear all! 😎***
+***You can do this right now, dear all!*** 😎
 
 **This is a placeholder for instructions when Debian 13 is released in August 2025**
 
